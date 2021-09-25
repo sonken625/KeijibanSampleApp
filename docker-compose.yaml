@@ -1,0 +1,22 @@
+# Use root/example as user/password credentials
+version: '3.1'
+
+services:
+  db:
+    image: mysql
+    restart: always
+    volumes:
+       - ./db/my.cnf:/etc/mysql/my.cnf
+    environment:
+      MYSQL_DATABASE: keijiban
+      MYSQL_USER: test
+      MYSQL_PASSWORD: password
+      MYSQL_ROOT_PASSWORD: root_password
+    ports:
+      - "3306:3306"
+
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8080:8080
